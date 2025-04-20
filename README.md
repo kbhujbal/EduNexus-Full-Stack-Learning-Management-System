@@ -1,123 +1,160 @@
 # EduNexus - Full-Stack Learning Management System
 
-EduNexus is a modern learning management system built with the MERN stack (MongoDB, Express.js, React, Node.js). It provides a comprehensive platform for managing courses, assignments, and student-instructor interactions.
+EduNexus is a modern, full-stack Learning Management System (LMS) built with React, Spring Boot, and MongoDB. It provides a comprehensive platform for educational institutions to manage courses, students, and instructors.
 
 ## Features
 
-- User Authentication (Student, Instructor, Admin roles)
-- Course Management
-- Module-based Learning Content
-- Assignments and Quizzes
-- Discussion Forums
-- Announcements
-- Profile Management
-- Responsive Design
+### Authentication & Authorization
+- JWT-based authentication system
+- Role-based access control (Admin, Instructor, Student)
+- Secure password encryption using BCrypt
+- User registration and login functionality
+- Session management with JWT tokens
+
+### User Management
+- User registration with role selection
+- User profile management
+- Role-based access control
+- User authentication and authorization
+- Password encryption and security
+
+### Course Management
+- Course creation and management
+- Course enrollment system
+- Course content organization
+- Course progress tracking
+- Course categorization
+
+### Student Features
+- Course enrollment
+- Progress tracking
+- Course materials access
+- Assignment submission
+- Grade viewing
+
+### Instructor Features
+- Course creation and management
+- Student enrollment management
+- Assignment creation and grading
+- Course content management
+- Student progress monitoring
+
+### Admin Features
+- User management
+- Course management
+- System configuration
+- Analytics and reporting
+- Role management
+
+## Tech Stack
+
+### Frontend
+- React.js
+- Material-UI
+- Axios for API calls
+- React Router for navigation
+- Redux for state management
+
+### Backend
+- Spring Boot
+- Spring Security
+- JWT Authentication
+- MongoDB
+- Maven
+
+### Database
+- MongoDB
+- Document-based storage
+- Flexible schema design
 
 ## Prerequisites
 
 - Node.js (v14 or higher)
+- Java JDK (v11 or higher)
 - MongoDB
+- Maven
 - npm or yarn
 
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/edunexus.git
-cd edunexus
-```
+### Backend Setup
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
 
-2. Install backend dependencies:
-```bash
-cd backend
-npm install
-```
+2. Install dependencies:
+   ```bash
+   mvn install
+   ```
 
-3. Install frontend dependencies:
-```bash
-cd ../frontend
-npm install
-```
+3. Configure MongoDB connection in `application.properties`
 
-4. Create environment files:
+4. Start the backend server:
+   ```bash
+   mvn spring-boot:run
+   ```
 
-Backend (.env):
-```
-PORT=8080
-MONGODB_URI=mongodb://localhost:27017/edunexus
-JWT_SECRET=your-secret-key-here
-NODE_ENV=development
-```
+### Frontend Setup
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
 
-Frontend (.env):
-```
-REACT_APP_API_URL=http://localhost:8080/api
-```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Running the Application
-
-1. Start the backend server:
-```bash
-cd backend
-npm run dev
-```
-
-2. Start the frontend development server:
-```bash
-cd frontend
-npm start
-```
-
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8080
-
-## Project Structure
-
-```
-edunexus/
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── middleware/
-│   │   └── server.ts
-│   ├── package.json
-│   └── tsconfig.json
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   ├── pages/
-    │   ├── store/
-    │   ├── types/
-    │   ├── App.tsx
-    │   └── index.tsx
-    ├── package.json
-    └── tsconfig.json
-```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
 ## API Endpoints
 
 ### Authentication
-- POST /api/auth/register - Register a new user
-- POST /api/auth/login - Login user
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - User login
+- `GET /api/auth/me` - Get current user details
 
-### Courses
-- GET /api/courses - Get all courses
-- GET /api/courses/:id - Get course by ID
-- POST /api/courses - Create a new course
-- PUT /api/courses/:id - Update course
-- DELETE /api/courses/:id - Delete course
-- POST /api/courses/:id/enroll - Enroll in a course
+### User Management
+- `GET /api/users` - Get all users (Admin only)
+- `GET /api/users/{id}` - Get user by ID
+- `PUT /api/users/{id}` - Update user
+- `DELETE /api/users/{id}` - Delete user
 
-### Users
-- GET /api/users/profile - Get user profile
-- PUT /api/users/profile - Update user profile
-- PUT /api/users/password - Change password
+### Course Management
+- `GET /api/courses` - Get all courses
+- `POST /api/courses` - Create new course
+- `GET /api/courses/{id}` - Get course by ID
+- `PUT /api/courses/{id}` - Update course
+- `DELETE /api/courses/{id}` - Delete course
+
+## Security Features
+- JWT-based authentication
+- Role-based access control
+- Password encryption
+- CORS configuration
+- CSRF protection
+- Input validation
+- Secure session management
+
+## Environment Variables
+
+### Backend
+```properties
+spring.data.mongodb.uri=mongodb://localhost:27017/edunexus
+jwt.secret=your-secret-key
+jwt.expiration=86400000
+```
+
+### Frontend
+```env
+REACT_APP_API_URL=http://localhost:8083/api
+```
 
 ## Contributing
-
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
@@ -125,6 +162,7 @@ edunexus/
 5. Open a Pull Request
 
 ## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
-=======
+## Contact
+For any queries or support, please contact the development team.
