@@ -2,6 +2,118 @@
 
 EduNexus is a modern, full-stack Learning Management System (LMS) built with React, Spring Boot, and MongoDB. It provides a comprehensive platform for educational institutions to manage courses, students, and instructors.
 
+## Project Structure
+
+```
+EduNexus/
+├── backend/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── edunexus/
+│   │   │   │           ├── config/           # Spring configuration classes
+│   │   │   │           ├── controller/       # REST API controllers
+│   │   │   │           ├── dto/              # Data Transfer Objects
+│   │   │   │           ├── model/            # Domain models
+│   │   │   │           ├── repository/       # MongoDB repositories
+│   │   │   │           ├── security/         # Security related classes
+│   │   │   │           └── service/          # Business logic services
+│   │   │   └── resources/
+│   │   │       └── application.properties    # Application configuration
+│   │   └── test/                             # Test classes
+│   ├── pom.xml                               # Maven configuration
+│   └── README.md
+└── frontend/
+    ├── public/                               # Static files
+    ├── src/
+    │   ├── components/                       # Reusable UI components
+    │   ├── pages/                            # Page components
+    │   ├── services/                         # API service calls
+    │   ├── store/                            # Redux store
+    │   ├── utils/                            # Utility functions
+    │   ├── App.js                            # Main application component
+    │   └── index.js                          # Application entry point
+    ├── package.json                          # NPM configuration
+    └── README.md
+```
+
+## Database Schema
+
+### User Collection
+```json
+{
+  "_id": "ObjectId",
+  "email": "String",
+  "password": "String",
+  "firstName": "String",
+  "lastName": "String",
+  "role": "String", // "admin", "instructor", "student"
+  "enrolledCourses": ["ObjectId"],
+  "managedCourses": ["ObjectId"],
+  "createdAt": "Date",
+  "updatedAt": "Date"
+}
+```
+
+### Course Collection
+```json
+{
+  "_id": "ObjectId",
+  "title": "String",
+  "description": "String",
+  "instructorId": "ObjectId",
+  "category": "String",
+  "enrolledStudents": ["ObjectId"],
+  "modules": [
+    {
+      "title": "String",
+      "content": "String",
+      "order": "Number"
+    }
+  ],
+  "assignments": [
+    {
+      "title": "String",
+      "description": "String",
+      "dueDate": "Date",
+      "submissions": [
+        {
+          "studentId": "ObjectId",
+          "submissionDate": "Date",
+          "grade": "Number",
+          "feedback": "String"
+        }
+      ]
+    }
+  ],
+  "createdAt": "Date",
+  "updatedAt": "Date"
+}
+```
+
+### Assignment Collection
+```json
+{
+  "_id": "ObjectId",
+  "courseId": "ObjectId",
+  "title": "String",
+  "description": "String",
+  "dueDate": "Date",
+  "totalMarks": "Number",
+  "submissions": [
+    {
+      "studentId": "ObjectId",
+      "submissionDate": "Date",
+      "grade": "Number",
+      "feedback": "String"
+    }
+  ],
+  "createdAt": "Date",
+  "updatedAt": "Date"
+}
+```
+
 ## Features
 
 ### Authentication & Authorization
@@ -162,7 +274,7 @@ REACT_APP_API_URL=http://localhost:8083/api
 5. Open a Pull Request
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 For any queries or support, please contact the development team.
